@@ -1,0 +1,41 @@
+---
+# Service which is connecting with your StatefulSet.
+apiVersion: v1
+kind: Service
+metadata:
+  name: speech-recog-svc
+spec:
+  selector:
+    app: speech
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: speech-recog-deploy
+  labels:
+    app: speech
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: speech
+  template:
+    metadata:
+      labels:
+        app: speech
+    spec:
+      containers:
+      - name: speech
+        # This will be your images name created from speechRecog Docker file.\
+        # Push the image to your azure registry.
+        # Pull the same image.
+        image: myregistrydomain.com:5000/speech_recog_v1.0
+        ports:
+        - containerPort: 9376
+        command: ["/bin/sh", "-c", "python /home/speechRecog.py; sleep infinite;"]
+

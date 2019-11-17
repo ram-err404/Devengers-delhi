@@ -1,0 +1,10 @@
+# This is the Docker file to create container of the speech recognition.
+FROM ubuntu 
+
+RUN apt-get update 
+RUN apt-get install –y python && apt-get install –y pip apt-get install -y net-tools
+RUN pip install gtts, playsound, random, datetime, webbrowser, pyttsx3, wikipedia, pygame, speech_recognition, espeak, pyowm
+
+COPY ./SpeechRecog.py /home/
+
+RUN echo "Container created successfully"
