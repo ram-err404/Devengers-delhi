@@ -7,9 +7,6 @@ Azure Cognitive Services
 Azure Machine Learning
 Azure Kubernetes Services
 
-Identity:
-Wearing green check shirt and sitting facing backward on the third row.
-
 Team Member:
 Ramji Misra
 
